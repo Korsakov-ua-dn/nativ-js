@@ -239,6 +239,20 @@ console.log('lesson 2');
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
 
+// function makeCounter(n: number) {
+//     let count = n
+//     return {
+//         increase: () => ++count,
+//         decrease: () => --count,
+//         reset: () => count = 0,
+//         set: (n: number) => count = n
+//     }
+// }
+// const counter = makeCounter(3)
+// console.log(counter.set(0));
+
+
+
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
 // и что бы корректно работали следующие вызовы:
@@ -251,31 +265,31 @@ console.log('lesson 2');
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
-function superSum(num: number) {
-    if(num <= 0) return 0;
-    if(num === 1) return (n:number) => n;
+// function superSum(num: number) {
+//     if(num <= 0) return 0;
+//     if(num === 1) return (n:number) => n;
 
-    let acc: number[] = [];
+//     let acc: number[] = [];
 
-    function helper( ...args: number[]) {
-        acc = [...acc, ...args];
-        if (acc.length >= num) {
-            acc.length = num;
-            return acc.reduce( (acc, number) => acc + number);
-        } else {
-            return helper;
-        }
-    }
+//     function helper( ...args: number[]) {
+//         acc = [...acc, ...args];
+//         if (acc.length >= num) {
+//             acc.length = num;
+//             return acc.reduce( (acc, number) => acc + number);
+//         } else {
+//             return helper;
+//         }
+//     }
 
-    return helper;
-}
+//     return helper;
+// }
 
-//@ts-ignore
-console.log(superSum(3)(2,5,3));
-//@ts-ignore
-console.log(superSum(3)(2,5)(3));
-//@ts-ignore
-console.log(superSum(3)(2,5)(3,9));
+// //@ts-ignore
+// console.log(superSum(3)(2,5,3));
+// //@ts-ignore
+// console.log(superSum(3)(2,5)(3));
+// //@ts-ignore
+// console.log(superSum(3)(2,5)(3,9));
 
 // Task 05
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
@@ -283,5 +297,24 @@ console.log(superSum(3)(2,5)(3,9));
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 
+// const multiArr = [1, 2, [1, 2, [1, 2]]]
+// let res: number[] = []
+
+// function flat(arr: any) {
+//     for ( let i = 0; i < arr.length; i++) {
+//         if (typeof(arr[i]) === "number") {
+//             res.push(arr[i])    
+//         } else {
+//             flat(arr[i])
+//         }
+//     }
+// }
+
+// flat(multiArr)
+
+// console.log(res);
+
+
+
 // just a plug
-export default () => {};
+export default () => {}
