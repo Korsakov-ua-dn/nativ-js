@@ -21,6 +21,113 @@ console.log('Lesson 5');
 // https://medium.com/@stasonmars/%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%BE-%D0%BE-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B0%D1%85-apply-call-%D0%B8-bind-%D0%BD%D0%B5%D0%BE%D0%B1%D1%85%D0%BE%D0%B4%D0%B8%D0%BC%D1%8B%D1%85-%D0%BA%D0%B0%D0%B6%D0%B4%D0%BE%D0%BC%D1%83-javascript-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D1%83-ddd5f9b06290
 
 
+//console.log(this) // --> window in not strict mode
+
+// let obj = { name: 'Evgen' };
+// let obj2 = { name: 'Kate' };
+// let complexObj = { innerObj: {name: 'Vlad'} };
+//
+// function f() {
+//     console.log('this in function declaration ', this);
+// }
+//
+// obj.f = f;
+//
+// f();
+// obj.f();
+// obj2.f = obj.f;
+// obj2.f();
+// complexObj.innerObj.f = obj2.f;
+// complexObj.innerObj.f();
+
+
+// let obj = { name: 'Evgen' };
+// let obj2 = { name: 'Kate' };
+// let complexObj = { innerObj: { name: 'Vlad', a: () => {
+//             console.log('this in arrow function', this);
+//         }
+//     }
+// };
+//
+// let arrow = () => {
+//     console.log('this in arrow function', this);
+// }
+//
+// arrow();
+//
+// obj.a = arrow;
+// obj.a();
+// complexObj.innerObj.a();
+
+// let obj = {
+//     name: 'Evgen',
+//     testFunc() {
+//         console.log('this in function declaration ', this);
+//         let arrow = () => {
+//             console.log('this in arrow function', this);
+//         };
+//         return arrow;
+//     }
+// };
+//
+// let obj2 = { name: 'Kate' };
+//
+// let obj3 = { name: 'Vlad'};
+//
+// obj3.f = obj.testFunc;
+//
+// obj2.a = obj3.f();
+//
+// obj2.a();
+//
+// let outerArrow = obj.testFunc();
+//
+// outerArrow();
+
+// let obj = {
+//     name: 'Evgen',
+//     testFunc() {
+//         console.log('this in function declaration ', this);
+//         let ar = () => {
+//             console.log('this in ar in setTimeout ', this);
+//         }
+//         setTimeout(function() {
+//             console.log('this in function declaration in setTimeout ', this);
+// //             let ar = () => {
+// //         	    console.log('this in ar in setTimeout ', this);
+// //             }
+//             ar();
+//         }, 0);
+// //         setTimeout(() => {
+// //             console.log('this in arrow in setTimeout ', this);
+// //         }, 0);
+//
+//         let arrow = () => {
+//             console.log('this in arrow in setTimeout ', this);
+//         }
+//         setTimeout(arrow, 0);
+//     }
+// };
+//
+// obj.testFunc();
+
+
+let obj = { name: 'Evgen' };
+let obj2 = { name: 'Kate' };
+let complexObj = { innerObj: {name: 'Vlad'} };
+
+function sayName(arg1:any, arg2: any, arg3: any,) {
+    // @ts-ignore
+    console.log(this.name, arg1, arg2, arg3);
+}
+// @ts-ignore
+sayName.bind(obj2, 500, 0 , 10)(50, 100);
+sayName.call(obj, 0, 1, 2);
+sayName.apply(obj, [0, 1, 2]);
+
+
+
+
 // Task 01
 // Дан объект someObj, реализуйте функцию greeting и присвойте ее ключу объекта с аналогичным именем.
 // Функция должна вернуть строку `My name is ${name}. I am ${age}`, где name и age берутся из свойств объекта
