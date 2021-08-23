@@ -7,18 +7,25 @@ console.log('lesson 4');
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
-
+// @ts-ignore
+// window.prom = new Promise( (res, rej) => {
+//     console.log("Promise is created")
+// })
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+// @ts-ignore
+// window.prom = Promise.resolve('Promise Data').then(console.log)
 
 
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
+// @ts-ignore
+// window.prom = Promise.reject('Promise Error').catch(console.log)
 
 
 // Task 04
@@ -26,6 +33,10 @@ console.log('lesson 4');
 // (Используйте setTimeout)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+// @ts-ignore
+// window.prom = new Promise((res, rej) => {
+//     setTimeout(() => {res('Promise Data')}, 3000)
+// }).then(console.log)
 
 
 // Task 05
@@ -48,6 +59,19 @@ console.log('lesson 4');
 // прибавляет к нему Ваше имя и возвращает новую строку из функции
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
+// new Promise<string>((res, rej) => {
+//     setTimeout(() => {res("My name is")}, 1000)
+// })
+//     // .then(res => onSuccess(res))
+//     .then(onSuccess)
+//     // .then(res => print(res))
+//     .then(print)
+// function onSuccess(arg: string) {
+//     return `${arg} Oleg`
+// }
+// function print(arg: string) {
+//     console.log(arg)
+// }
 
 
 // Task 7
@@ -55,6 +79,18 @@ console.log('lesson 4');
 // второй промис возвращает объект {age: 16} через 3 с, а третий {city: ''} через 4с.
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
+// @ts-ignore
+// const promise1 = new Promise<any>((res, rej) => {
+//     setTimeout(() => {res({ name: "Anna" })}, 2000)
+// }).then(res => res.name)
+// const promise2 = new Promise<any>((res, rej) => {
+//     setTimeout(() => {res({age: 16})}, 3000)
+// }).then(res => res.age)
+// const promise3 = new Promise<any>((res, rej) => {
+//     setTimeout(() => {res({city: ''})}, 4000)
+// }).then(res => res.city)
+//
+// Promise.all([promise1, promise2, promise3]).then(console.log)
 
 
 
