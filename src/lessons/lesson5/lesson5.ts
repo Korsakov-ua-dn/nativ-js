@@ -112,18 +112,18 @@ console.log('Lesson 5');
 // obj.testFunc();
 
 
-let obj = { name: 'Evgen' };
-let obj2 = { name: 'Kate' };
-let complexObj = { innerObj: {name: 'Vlad'} };
-
-function sayName(arg1:any, arg2: any, arg3: any,) {
-    // @ts-ignore
-    console.log(this.name, arg1, arg2, arg3);
-}
-// @ts-ignore
-sayName.bind(obj2, 500, 0 , 10)(50, 100);
-sayName.call(obj, 0, 1, 2);
-sayName.apply(obj, [0, 1, 2]);
+// let obj = { name: 'Evgen' };
+// let obj2 = { name: 'Kate' };
+// let complexObj = { innerObj: {name: 'Vlad'} };
+//
+// function sayName(arg1:any, arg2: any, arg3: any,) {
+//     // @ts-ignore
+//     console.log(this.name, arg1, arg2, arg3);
+// }
+// // @ts-ignore
+// sayName.bind(obj2, 500, 0 , 10)(50, 100);
+// sayName.call(obj, 0, 1, 2);
+// sayName.apply(obj, [0, 1, 2]);
 
 
 
@@ -135,12 +135,17 @@ sayName.apply(obj, [0, 1, 2]);
 type someObjType = {
     name: string;
     age: number;
+    greeting: () => string
 }
 
 let someObj:someObjType = {
     name: 'Eugene',
-    age: 32
+    age: 32,
+    greeting: function greeting() {
+        return `My name is ${this.name}. I am ${this.age}`
+    }
 }
+// console.log(someObj.greeting())
 
 // Task 02
 // реализовать счетчик counter в виде объекта со следующими методами:
@@ -151,6 +156,37 @@ let someObj:someObjType = {
 // rest current count - устанавливает значение счетчика равным 0
 // все методы должны ссылаться на сам объект
 
+// const counter = {
+//     currentValue: 0,
+//     getCurrentCount() {
+//         console.log(this.currentValue)
+//     },
+//     increment() {
+//         ++this.currentValue
+//         return counter
+//     },
+//     decrement() {
+//         --this.currentValue
+//         return counter
+//     },
+//     setCurrentCount(value: number) {
+//         this.currentValue = value
+//         return counter
+//     },
+//     resetCurrentCount() {
+//         this.currentValue = 0
+//         return counter
+//     }
+// }
+// counterObj.increment()
+// counterObj.increment()
+// counterObj.increment()
+// counterObj.setCurrentCount(5)
+// counterObj.decrement()
+// counterObj.resetCurrentCount()
+// counterObj.getCurrentCount()
+
+
 // Task 03
 // переделайте код из Task 02, что бы сработал следующий код:
 // counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount() // 12
@@ -158,11 +194,18 @@ let someObj:someObjType = {
 // Task 04
 // Написать функцию конструктор myFirstConstructorFunc которая принимает 2 параметра name и age и возвращает объект
 // у которого будут эти свойства и метод greeting из Task 01
+// const myFirstConstructorFunc = (name: string, age: number): someObjType => ({
+//     name,
+//     age,
+//     greeting: someObj.greeting
+// })
+// console.log(myFirstConstructorFunc("dima", 32).greeting())
 
 // Task 05 есть 2 объекта One и Two. С помощью bind и метода sayHello заставьте поздороваться объект One
 
-let One = {name: 'One'};
-let Two = {name: 'Two', sayHello: function() {console.log(`Hello, my name is ${this.name}`)}};
+// let One = {name: 'One'};
+// let Two = {name: 'Two', sayHello: function() {console.log(`Hello, my name is ${this.name}`)}};
+// Two.sayHello.bind(One)()
 
 // Task 06
 // создайте объект helperObj у которого есть следующие методы:
@@ -170,11 +213,32 @@ let Two = {name: 'Two', sayHello: function() {console.log(`Hello, my name is ${t
 // setAge - устанавливает полученное значение в свойство age объекта
 // greeting - используется функция sayHello из Task 05
 // можно использовать @ts-ignore
+// @ts-ignore
+// const helperObj = {
+//     name: null as string | null,
+//     age: null as number | null,
+//     changeName(name: string) {
+//         this.name = name
+//     },
+//     setAge(age: number) {
+//         this.age = age
+//     },
+//     greeting: Two.sayHello
+// }
+// helperObj.changeName('Oleg')
+// helperObj.setAge(37)
+// helperObj.greeting()
+
 
 // Bind
 // 1) Дана функция sumTwoNumbers, реализовать функцию bindNumber которая принимает функцию sumTwoNumbers и число, и
 // возвращает другую функцию, которое также принимает число и возвращает сумму этих чисел. Замыкание использовать нельзя
-function sumTwoNumbers(a:number,b:number):number {return a + b};
+// function sumTwoNumbers(a:number,b:number):number {return a + b};
+// function bindNumber(f: Function, num: number) {
+//     return function (num2: number) {
+//
+//     }
+// }
 
 // 2) Напишите функцию которая принимает первым аргументом объект One, а вторым helperObj. Данная функция
 // возвращает другую функцию которая принимает строку в качестве аргумента и устанавливает ее свойству name объекта One
