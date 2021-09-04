@@ -240,9 +240,9 @@ students.push(new Student('Yo', 'YoYo', 2, [4,3,4,3,4]));
 students.push(new Student('Nick', 'Block', 3, [4,5,4,5,4]));
 students.push(new Student('Hanna', 'Bond', 4, [5,5,5,5,5]));
 
-console.log(students);
-console.log(Student.sort(students));
-Student.printGoodStudent(students);
+// console.log(students);
+// console.log(Student.sort(students));
+// Student.printGoodStudent(students);
 
 
 
@@ -251,12 +251,63 @@ Student.printGoodStudent(students);
 // Можно ли создать метод на экземпляре класса который будет удалять сам экземпляр класса?
 // Можно ли создать метод класса который будет удалять экземпляр класса?
 
+// class User {
+//     id: number;
+//     name: string;
+//     destroy: Function;
+//     constructor(id: number = 0, name: string = "xxx") {
+//         this.id = id
+//         this.name = name
+//         this.destroy = function(obj: any) {
+//             delete obj
+//         }
+//     }
+//     // destroy(obj: any) {
+//     //     delete obj
+//     // }
+// }
+// const pasha = new User(1, "pasha")
+// console.log(pasha)
+
+
 // Task 03
 // Составить описание класса для представления времени. Предусмотреть возможности установки времени и изменения его отдельных
 // полей (час, минута, секунда) с проверкой допустимости вводимых значений. В случае недопустимых значений полей выбрасываются исключения.
 // Создать методы изменения времени на заданное количество часов, минут и секунд.
 // Создать метод выводящий время в строке формата HH:MM:SS
 // Создать класс по вышеуказанному описанию
+
+interface ITime {
+    hours: string,
+    minutes: string,
+    seconds: string
+}
+class Time implements ITime {
+    hours: string;
+    minutes: string;
+    seconds: string;
+    constructor() {
+        this.hours = "00"
+        this.minutes = "00"
+        this.seconds = "00"
+    }
+    setTime(hours: number, min: number, sec: number) {
+        if (hours < 0 || min < 0 || sec < 0 || hours > 24 || min > 60 || sec > 60
+            || Number.isInteger(hours) ||Number.isInteger(min) || Number.isInteger(sec))
+            console.warn("incorrect time")
+        else {
+            this.hours = hours < 10 ? `0${hours.toString()}` : hours.toString()
+            this.minutes = min < 10 ? `0${min.toString()}` : min.toString()
+            this.seconds = sec < 10 ? `0${sec.toString()}` : sec.toString()
+        }
+    }
+    getTime() {
+        console.log(`${this.hours}:${this.minutes}:${this.seconds}`)
+    }
+}
+const firstTest = new Time()
+firstTest.setTime(1, 1.4, 10)
+firstTest.getTime()
 
 // Task 04
 // Класс Покупатель: Фамилия, Имя, Адрес, Номер банковского счета;
